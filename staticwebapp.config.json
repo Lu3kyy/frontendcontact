@@ -1,0 +1,28 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*", "/css/*", "/js/*"]
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html"
+    }
+  },
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "enabled": false
+      }
+    }
+  },
+  "forwwardingGateway": {
+    "allowedOrigins": ["*"],
+    "gatewayRoutes": [
+      {
+        "route": "/api/*",
+        "allowedMethods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allowedHeaders": ["Authorization", "Content-Type"]
+      }
+    ]
+  }
+}
