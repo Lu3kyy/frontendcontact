@@ -1,13 +1,4 @@
 {
-  "navigationFallback": {
-    "rewrite": "/index.html",
-    "exclude": ["/images/*", "/css/*", "/js/*"]
-  },
-  "responseOverrides": {
-    "404": {
-      "rewrite": "/404.html"
-    }
-  },
   "auth": {
     "identityProviders": {
       "azureActiveDirectory": {
