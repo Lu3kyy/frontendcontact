@@ -1,6 +1,9 @@
 
+const configuredApiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim();
+
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5056';
+  configuredApiBaseUrl ||
+  (process.env.NODE_ENV === 'development' ? 'http://localhost:5056' : '');
 
 export interface User {
   id: number;
@@ -92,6 +95,12 @@ async function fetchAPI(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<any> {
+  if (!API_BASE_URL) {
+    throw new Error(
+      'NEXT_PUBLIC_API_URL is not configured for production. Set it in Azure Static Web Apps application settings and redeploy.'
+    );
+  }
+
   const url = `${API_BASE_URL}${endpoint}`;
 
   const headers = {
